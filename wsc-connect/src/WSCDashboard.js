@@ -39,7 +39,7 @@ class WSCDashboard extends Component {
 			this.setState({app: app});
 		})
 		.catch((error) => {
-			let status = parseInt(error.message);
+			let status = parseInt(error.message, 10);
 			switch(status) {
 				case 401:
 				case 403:
@@ -48,6 +48,8 @@ class WSCDashboard extends Component {
 					// jwt token is not valid anymore or other error
 					this.logout();
 					break;
+				default:
+					console.log(error);
 			}
 		});
 	}

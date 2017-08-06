@@ -3,7 +3,7 @@ import WSCInput from './WSCInput';
 import { Button, Form} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { config } from './config.js';
-import { FormattedMessage, FormattedHTMLMessage }  from 'react-intl';
+import { FormattedMessage }  from 'react-intl';
 
 class WSCLogin extends Component {
 	constructor(props) {
@@ -63,7 +63,7 @@ class WSCLogin extends Component {
 		})
 		.catch((error) => {
 			button.disabled = false;
-			let status = parseInt(error.message);
+			let status = parseInt(error.message, 10);
 			let validateErrors = {...this.state.validateErrors};
 
 			console.log(status);

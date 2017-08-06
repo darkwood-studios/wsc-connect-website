@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import WSCInput from './WSCInput';
 import { Button, Form} from 'reactstrap';
-import { config } from './config.js';
 import { FormattedMessage } from 'react-intl';
 
 class WSCForgot extends Component {
@@ -21,7 +20,7 @@ class WSCForgot extends Component {
 	validate(e) {
 		e.preventDefault();
 
-		let email = e.currentTarget.email.value;
+		/*let email = e.currentTarget.email.value;
 		let button = e.currentTarget.submit;
 
 		button.disabled = true;

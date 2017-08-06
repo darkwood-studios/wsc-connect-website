@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FormGroup, Label, Input, FormText, FormFeedback } from 'reactstrap';
-import { FormattedMessage, FormattedHTMLMessage, injectIntl, intlShape }  from 'react-intl';
+import { FormattedMessage, FormattedHTMLMessage, injectIntl }  from 'react-intl';
 
 class WSCInput extends Component {
 	toHTML(string) {

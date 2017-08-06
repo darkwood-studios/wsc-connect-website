@@ -24,13 +24,15 @@ class WSCRegister extends Component {
 					id: 'name',
 					placeholder: 'wsc.register.form.name.placeholder',
 					label: 'wsc.register.form.name.label',
-					inputType: 'text'
+					inputType: 'text',
+					description: 'wsc.register.form.name.description'
 				},
 				{
 					id: 'url',
 					placeholder: 'wsc.register.form.url.placeholder',
 					label: 'wsc.register.form.url.label',
-					inputType: 'url'
+					inputType: 'url',
+					description: 'wsc.register.form.url.description'
 				},
 				{
 					id: 'apiUrl',
@@ -123,7 +125,7 @@ class WSCRegister extends Component {
 
 		let img = new Image();
 		img.onload = function() {
-			if (img.width !== 300 || img.height !== 300) {
+			if (img.width !== img.height || img.width < 200 || img.width > 500) {
 				error = true;
 				validateErrors.logo.error = true;
 				validateErrors.logo.message = 'wsc.register.form.logo.error.dimension';		
@@ -179,7 +181,7 @@ class WSCRegister extends Component {
 			})
 			.catch((error) => {
 				button.disabled = false;
-				let status = parseInt(error.message);
+				let status = parseInt(error.message, 10);
 				let validateErrors = {...this.state.validateErrors};
 
 				console.log(status);
@@ -251,6 +253,8 @@ class WSCRegister extends Component {
 							validateErrors.apiUrl.error = true;
 							validateErrors.apiUrl.message = 'wsc.register.form.apiUrl.error.used';
 						break;
+						default:
+							console.lg(error);
 					}
 
 					this.setState({validateErrors});
@@ -294,7 +298,6 @@ class WSCRegister extends Component {
 		})
 		.catch((error) => {
 			button.disabled = false;
-			let status = parseInt(error.message);
 			let validateErrors = {...this.state.validateErrors};
 
 			validateErrors.appID.error = true;

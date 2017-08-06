@@ -3,7 +3,7 @@ import WSCInput from './WSCInput';
 import { Button, Form, Alert} from 'reactstrap';
 import { Link } from 'react-router-dom'
 import { config } from './config.js';
-import { FormattedMessage, FormattedHTMLMessage }  from 'react-intl';
+import { FormattedMessage }  from 'react-intl';
 
 class WSCDashboardMessageAdd extends Component {
 	constructor(props) {
@@ -74,9 +74,9 @@ class WSCDashboardMessageAdd extends Component {
 		})
 		.catch((error) => {
 			error = JSON.parse(error.message);
-			if (error.status == 401) {
+			if (error.status === 401) {
 				this.logout();
-			} else if (error.status == 500) {
+			} else if (error.status === 500) {
 				button.disabled = false;
 				this.setState({error: true});
 			} else {

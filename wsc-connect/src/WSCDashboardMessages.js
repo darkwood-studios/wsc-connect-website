@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import WSCInput from './WSCInput';
-import { Button, Form, Alert, Table} from 'reactstrap';
+import { Table} from 'reactstrap';
 import { Link } from 'react-router-dom'
-import { config } from './config.js';
 import { FormattedMessage, FormattedDate, FormattedTime }  from 'react-intl';
 
 class WSCDashboardMessages extends Component {

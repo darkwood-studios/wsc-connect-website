@@ -87,14 +87,20 @@ margin-bottom: 5px;
 padding-left: 5px;
 }
 
-.splash-image {
-	height: 500px;
+.splash-image-right {
+	height: 400px;
 	margin-left: 25px;
 	display: none;
 }
 
-.main-container {
-	height: 520px;
+.splash-image-left {
+	height: 400px;
+	margin-right: 25px;
+	display: none;
+}
+
+.splash-image-small {
+	height: 220px;
 }
 
 #apps-table td {
@@ -122,12 +128,24 @@ padding-left: 5px;
 	padding-left: 0;
 }
 
+.app-badge {
+	width: 190px;
+}
+
+.app-store-badge {
+	opacity: 0.3;
+}
+
 @media (min-width: 576px) {
-	.splash-image {
+	.splash-image-right, .splash-image-left {
 		display: block;
 	}
 
 	.nav-item.languageChoose{
 		display: block;
+	}
+
+	.app-store-badge {
+		margin-left: 10px;
 	}
 }

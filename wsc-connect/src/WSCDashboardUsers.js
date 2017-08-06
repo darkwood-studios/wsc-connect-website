@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Table } from 'reactstrap';
 import FontAwesome from 'react-fontawesome';
-import { FormattedMessage, FormattedHTMLMessage, FormattedDate, FormattedTime }  from 'react-intl';
+import { FormattedMessage, FormattedDate, FormattedTime }  from 'react-intl';
 
 class WSCDashboardUsers extends Component {
 	constructor(props) {

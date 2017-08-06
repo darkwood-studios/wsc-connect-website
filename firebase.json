@@ -3,7 +3,7 @@
     "public": "public",
     "rewrites": [
       {
-        "source": "**",
+        "source": "**/!(*.apk|*.tar)",
         "destination": "/index.html"
       }
     ]

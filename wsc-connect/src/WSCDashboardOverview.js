@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import WSCInput from './WSCInput';
 import { Alert, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { config } from './config.js';
-import { Link } from 'react-router-dom'
 import { FormattedMessage, FormattedHTMLMessage }  from 'react-intl';
 
 class WSCDashboardOverview extends Component {
@@ -58,7 +57,7 @@ class WSCDashboardOverview extends Component {
 
 		let img = new Image();
 		img.onload = function() {
-			if (img.width !== 300 || img.height !== 300) {
+			if (img.width !== img.height || img.width < 200 || img.width > 500) {
 				error = true;
 				validateErrors.logo.error = true;
 				validateErrors.logo.message = 'wsc.register.form.logo.error.dimension';		
@@ -120,7 +119,7 @@ class WSCDashboardOverview extends Component {
 			})
 			.catch((error) => {
 				button.disabled = false;
-				if (error.status == 401) {
+				if (error.status === 401) {
 					this.logout();
 				} else {
 					console.log(error);
@@ -163,7 +162,7 @@ class WSCDashboardOverview extends Component {
 			button.disabled = false;
 			this.toggleDeleteModal();
 
-			if (error.status == 401) {
+			if (error.status === 401) {
 				this.logout();
 			} else {
 				this.setState({
