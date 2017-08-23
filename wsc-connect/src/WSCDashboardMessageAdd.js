@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import WSCInput from './WSCInput';
-import { Button, Form, Alert} from 'reactstrap';
+import { Button, Form, Alert, Badge } from 'reactstrap';
 import { Link } from 'react-router-dom'
 import { config } from './config.js';
-import { FormattedMessage }  from 'react-intl';
+import { FormattedMessage, FormattedHTMLMessage }  from 'react-intl';
 
 class WSCDashboardMessageAdd extends Component {
 	constructor(props) {
@@ -96,12 +96,20 @@ class WSCDashboardMessageAdd extends Component {
 		window.sessionStorage.removeItem('appName');
 
 		// redirect to apps
-		window.location = '/apps';
+		window.location = '/login';
 	}
 
 	render() {
+		//console.log(this.state.app._users);
 		let formInputs = [];
+		let userBadges = [];
 		let inputs = [
+			/*{
+				id: 'receivers',
+				label: 'wsc.dashboard.messages.form.receivers.label',
+				inputType: 'text',
+				readonly: true
+			},*/
 			{
 				id: 'title',
 				label: 'wsc.dashboard.messages.form.title.label',
@@ -119,37 +127,53 @@ class WSCDashboardMessageAdd extends Component {
 			formInputs.push(<WSCInput input={input} key={input.id} />);
 		});
 
-		return (
-			<main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-				<h2><FormattedMessage id="wsc.dashboard.messages.title" /></h2>
+		this.state.app._users.forEach((user) => {
+			//userBadges.push(<Badge key={user.userID}>{user.username} ({user.userID})</Badge>);
+		});
 
-				{this.state.success &&
-					<div>
-						<Alert color="success"><FormattedMessage id="wsc.dashboard.messages.success" /></Alert>
-						<Button color="success" onClick={() => this.updateAndRedirect()}><FormattedMessage id="wsc.dashboard.messages.back" /></Button>
-					</div>
-				}
 
-				{!this.state.success &&
-					<div>
-						{this.state.error &&
-							<Alert color="danger"><FormattedMessage id="wsc.dashboard.messages.error" /></Alert>
-						}
+		if (this.state.app.enabled) {
+			return (
+				<main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+					<h2><FormattedMessage id="wsc.dashboard.messages.title" /></h2>
 
-						{this.state.empty &&
-							<Alert color="info"><FormattedMessage id="wsc.dashboard.messages.empty" /></Alert>
-						}
-						<Form method="post" onSubmit={this.sendMessage.bind(this)}>
-							{formInputs}
+					{this.state.success &&
+						<div>
+							<Alert color="success"><FormattedMessage id="wsc.dashboard.messages.success" /></Alert>
+							<Button color="success" onClick={() => this.updateAndRedirect()}><FormattedMessage id="wsc.dashboard.messages.back" /></Button>
+						</div>
+					}
 
-							<Button type="submit" color="primary" id="submit"><FormattedMessage id="wsc.dashboard.messages.submit" values={{users: this.state.app._users.length}} /></Button>{' '}
+					{!this.state.success &&
+						<div>
+							{this.state.error &&
+								<Alert color="danger"><FormattedMessage id="wsc.dashboard.messages.error" /></Alert>
+							}
 
-							<Link className="btn btn-secondary" to={'/dashboard/messages'}><FormattedMessage id="wsc.dashboard.messages.back" /></Link>
-						</Form>
-					</div>
-				}
-			</main>
-		);
+							{this.state.empty &&
+								<Alert color="info"><FormattedMessage id="wsc.dashboard.messages.empty" /></Alert>
+							}
+							<Form method="post" onSubmit={this.sendMessage.bind(this)}>
+								{userBadges}
+								{formInputs}
+
+								<Button type="submit" color="primary" id="submit"><FormattedMessage id="wsc.dashboard.messages.submit" values={{users: this.state.app._users.length}} /></Button>{' '}
+
+								<Link className="btn btn-secondary" to={'/dashboard/messages'}><FormattedMessage id="wsc.dashboard.messages.back" /></Link>
+							</Form>
+						</div>
+					}
+				</main>
+			);
+		} else {
+			return (
+				<main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
+					<Alert color="danger">
+						<FormattedHTMLMessage id="wsc.dashboard.overview.disabled" values={{apiUrl: this.state.app.apiUrl}} />
+					</Alert>
+				</main>
+			);
+		}
 	}
 }
 

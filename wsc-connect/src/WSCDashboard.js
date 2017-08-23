@@ -69,7 +69,7 @@ class WSCDashboard extends Component {
 		window.sessionStorage.removeItem('appName');
 
 		// redirect to apps
-		window.location = '/apps';
+		window.location = '/login';
 	}
 
 	render() {
@@ -92,7 +92,7 @@ class WSCDashboard extends Component {
 					</ul>
 				</nav>
 
-				<Route path={`${this.props.match.url}/overview`} component={props => <WSCDashboardOverview app={this.state.app} {...props} />} />
+				<Route path={`${this.props.match.url}/overview`} component={props => <WSCDashboardOverview updateApp={() => this.updateApp()} app={this.state.app} {...props} />} />
 				<Route path={`${this.props.match.url}/messages`} exact component={props => <WSCDashboardMessages app={this.state.app} {...props} />} />
 				<Route path={`${this.props.match.url}/messages/add`} component={props => <WSCDashboardMessageAdd  updateApp={() => this.updateApp()} app={this.state.app} {...props} />} />
 				<Route path={`${this.props.match.url}/users`} component={props => <WSCDashboardUsers app={this.state.app} {...props} />} />

@@ -1,53 +1,58 @@
 import React, { Component } from 'react';
 import WSCInput from './WSCInput';
-import { Button, Form} from 'reactstrap';
-import { FormattedMessage } from 'react-intl';
+import { Button, Form, Alert} from 'reactstrap';
+import { FormattedMessage, FormattedHTMLMessage, injectIntl } from 'react-intl';
+import { config } from './config.js';
 
 class WSCForgot extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			validateErrors: {
-				email: {
-					error: false,
-					message: ''
-				}
-			}
+			success: false,
+			email: '',
+			error: 0
 		};
 	}
 
 	validate(e) {
 		e.preventDefault();
 
-		/*let email = e.currentTarget.email.value;
+		let email = e.currentTarget.email.value;
 		let button = e.currentTarget.submit;
 
 		button.disabled = true;
-		// TODO
-		/*fetch(config.apiUrl + 'forgotSecret', {
+
+		fetch(config.apiUrl + 'requestSecret', {
 			headers: {
 				'Accept': 'application/json',
 				'Content-Type': 'application/json'
 			},
 			method: "POST",
 			body: JSON.stringify({
-				email
+				email: email,
+				subject: this.props.intl.formatMessage({id: 'wsc.forgot.email.subject'}),
+				text: this.props.intl.formatMessage({id: 'wsc.forgot.email.text'})
 			})
 		})
 		.then(function(response) {
 			if (response.status === 200) {
-				return response.json();
+				return response.text();
 			}
 
 			throw new Error(response.status);
 		})
 		.then((json) => {
+			this.setState({
+				success: true,
+				email: email
+			});
 		})
 		.catch((error) => {
-			console.log("error");
-			console.log(error);
-		});*/
+			this.setState({
+				error: error.message
+			});
+		});
 	}
 
 	render() {
@@ -62,20 +67,41 @@ class WSCForgot extends Component {
 			}
 		];
 		inputs.forEach((input) => {
-			formInputs.push(<WSCInput input={input} validateErrors={this.state.validateErrors[input.id]} key={input.id} />);
+			formInputs.push(<WSCInput input={input} key={input.id} />);
 		});
 
-		return (
-			<div>
-				<h2><FormattedMessage id="wsc.forgot.title" /></h2>
-				<Form method="post" onSubmit={this.validate.bind(this)}>
-					{formInputs}
+		if (this.state.success) {
+			return (
+				<div>
+					<h2><FormattedMessage id="wsc.forgot.title" /></h2>
+					<Alert color="success">
+						<FormattedHTMLMessage values={{email: this.state.email}} id="wsc.forgot.success" />
+					</Alert>
+				</div>
+			);
+		} else if (this.state.error !== 0) {
+			var error = 'wsc.forgot.error' + this.state.error;
+			return (
+				<div>
+					<h2><FormattedMessage id="wsc.forgot.title" /></h2>
+					<Alert color="danger">
+						<FormattedMessage id={error} defaultMessage="Error, please try again later." />
+					</Alert>
+				</div>
+			);
+		} else {
+			return (
+				<div>
+					<h2><FormattedMessage id="wsc.forgot.title" /></h2>
+					<Form method="post" onSubmit={this.validate.bind(this)}>
+						{formInputs}
 
-					<Button type="submit" disabled color="primary" id="submit"><FormattedMessage id="wsc.forgot.submit" /></Button>
-				</Form>
-			</div>
-		);
+						<Button type="submit" color="primary" id="submit"><FormattedMessage id="wsc.forgot.submit" /></Button>
+					</Form>
+				</div>
+			);
+		}
 	}
 }
 
-export default WSCForgot;
+export default injectIntl(WSCForgot);

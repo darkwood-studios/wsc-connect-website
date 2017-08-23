@@ -37,6 +37,7 @@ class WSCDashboardOverview extends Component {
 		let url = e.currentTarget.url.value;
 		let logo = e.currentTarget.logo.value;
 		let button = e.currentTarget.submit;
+		let visible = e.currentTarget.visible.checked;
 		let error = false;
 		let validateErrors = {...this.state.validateErrors};
 
@@ -80,7 +81,8 @@ class WSCDashboardOverview extends Component {
 			let data = {
 				name,
 				url,
-				logo
+				logo,
+				visible
 			};
 
 			button.disabled = true;
@@ -110,12 +112,7 @@ class WSCDashboardOverview extends Component {
 				button.disabled = false;
 
 				window.sessionStorage.setItem('appName', json.name);
-
-				this.setState({
-					app: json
-				});
-
-	 			window.location.reload();
+				this.props.updateApp();
 			})
 			.catch((error) => {
 				button.disabled = false;
@@ -173,13 +170,45 @@ class WSCDashboardOverview extends Component {
 		});
 	}
 
+	revalidate(e) {
+		let button = e.currentTarget;
+		button.disabled = true;
+
+		fetch(config.apiUrl + 'validate', {
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			method: "POST",
+			body: JSON.stringify({
+				'apiUrl': this.state.app.apiUrl,
+				'appID': this.state.app._id,
+				'appSecret': this.state.app.appSecret,
+				'type': 'apiDataValidation'
+			})
+		})
+		.then(function(response) {
+			if (response.status === 200) {
+				return response.json();
+			}
+
+			throw new Error(response.status);
+		})
+		.then((json) => {
+			this.props.updateApp();
+		})
+		.catch((error) => {
+			button.disabled = false;
+		});
+	}
+
 	logout() {
 		window.sessionStorage.removeItem('loginToken');
 		window.sessionStorage.removeItem('appID');
 		window.sessionStorage.removeItem('appName');
 
 		// redirect to apps
-		window.location = '/apps';
+		window.location = '/login';
 	}
 
 	toggleDeleteModal() {
@@ -229,12 +258,13 @@ class WSCDashboardOverview extends Component {
 				label: 'wsc.register.form.logo.label',
 				inputType: 'text',
 				value: this.state.app.logo
-			},
+			}
 		];
 
 		inputs.forEach((input) => {
 			formInputs.push(<WSCInput input={input} readonly={input.readOnly} validateErrors={this.state.validateErrors[input.id]} key={input.id} />);
 		});
+
 
 		return (
 			<main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
@@ -251,15 +281,24 @@ class WSCDashboardOverview extends Component {
 				}
 
 				{this.state.app.enabled === false && !this.state.updateSucess &&
-					<Alert color="danger">
-						<FormattedHTMLMessage id="wsc.dashboard.overview.disabled" values={{apiUrl: this.state.app.apiUrl}} />
-					</Alert> 
+					<div>
+						<Alert color="danger">
+							<FormattedHTMLMessage id="wsc.dashboard.overview.disabled" values={{apiUrl: this.state.app.apiUrl}} />
+						</Alert>
+
+						{formInputs}
+
+						<Button color="warning" onClick={this.revalidate.bind(this)} id="submit"><FormattedMessage id="wsc.dashboard.overview.revalidate" /></Button>
+					</div>
 				}
 				{this.state.app.enabled === true && !this.state.updateSucess &&
 				   	<form onSubmit={this.updateApp.bind(this)}>
 
 						{formInputs}
-						
+						<div>
+						<input type="checkbox" id="visible" name="visible" defaultChecked={!this.state.app.hasOwnProperty('visible') || this.state.app.visible === true} /> <label style={{display: 'inline'}} htmlFor="visible"><FormattedMessage id="wsc.dashboard.form.visible" /></label>
+						</div>
+
 						<Button color="primary" id="submit"><FormattedMessage id="wsc.dashboard.overview.update" /></Button>{' '}
 						<Button color="danger" onClick={this.toggleDeleteModal.bind(this)}><FormattedMessage id="wsc.dashboard.overview.delete" /></Button>
 					</form>

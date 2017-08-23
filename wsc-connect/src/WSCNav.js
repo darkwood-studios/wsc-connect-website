@@ -72,6 +72,9 @@ class WSCNav extends Component {
 						</Nav>
 
 						<Nav navbar>
+							<NavItem>
+								<NavLink className="nav-link" to="/download"><Badge color="info"><FormattedMessage id="wsc.nav.version" values={{version: "X.0.5"}} /></Badge></NavLink>
+							</NavItem>
 							<NavItem className="languageChoose">
 								<div className="nav-link" onClick={() => { this.selectLang("de") }}><img src={DeImg} alt="" /></div>
 							</NavItem>

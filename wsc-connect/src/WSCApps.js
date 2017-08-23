@@ -20,8 +20,16 @@ class WSCApps extends Component {
 		return fetch(config.apiUrl + 'apps')
 			.then((response) => response.json())
 			.then((apps) => {
+				let visibleApps = [];
+
+				apps.forEach(function(app) {
+					if (!app.hasOwnProperty('visible') || app.visible === true) {
+						visibleApps.push(app);
+					}
+				});
+
 				this.setState({
-					apps: apps,
+					apps: visibleApps,
 					loaded: true
 				});
 			})
@@ -62,9 +70,10 @@ class WSCApps extends Component {
 
 class AppRow extends React.Component {
 	render() {
+		var logo = `https://images.weserv.nl/?url=` + this.props.app.logo.replace(/^https?:\/\//,'');
 		return (
 			<tr>
-				<td className="text-left"><img alt="" className="mg-fluid rounded" src={this.props.app.logo} /> <span>{this.props.app.name}</span></td>
+				<td className="text-left"><img alt="" className="mg-fluid rounded" src={logo} /> <span>{this.props.app.name}</span></td>
 				<td className="text-left"><a href={this.props.app.url} target="_blank">{this.props.app.url}</a></td>
 			</tr>
 		);

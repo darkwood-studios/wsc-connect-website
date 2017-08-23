@@ -12,7 +12,7 @@ class WSCInput extends Component {
 		return (
 			<FormGroup color={this.props.validateErrors && this.props.validateErrors.error ? 'danger' : null}>
 				<Label for={this.props.input.id}><FormattedMessage id={this.props.input.label} /></Label>
-				<Input required readOnly={this.props.readonly ? true : false} type={this.props.input.inputType} name={this.props.input.id} id={this.props.input.id} defaultValue={this.props.input.value} placeholder={placeholder} />
+				<Input required readOnly={(this.props.readonly || this.props.input.readonly) ? true : false} type={this.props.input.inputType} name={this.props.input.id} id={this.props.input.id} defaultValue={this.props.input.value} placeholder={placeholder} />
 				{this.props.input.description &&
 					<FormText color="muted"><FormattedHTMLMessage id={this.props.input.description} /></FormText>
 				}

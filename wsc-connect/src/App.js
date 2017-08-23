@@ -9,6 +9,7 @@ import WSCFooter from './WSCFooter';
 import WSCDashboard from './WSCDashboard';
 import WSCForgot from './WSCForgot';
 import WSCFAQ from './WSCFAQ';
+import WSCDownload from './WSCDownload';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css';
 import { addLocaleData, IntlProvider } from 'react-intl';
@@ -48,6 +49,7 @@ class App extends Component {
 							<Route path="/dashboard" component={WSCDashboard} />
 							<Route path="/forgot" component={WSCForgot} />
 							<Route path="/faq" component={WSCFAQ} />
+							<Route path="/download" component={WSCDownload} />
 						</div>
 						<Route component={WSCFooter} />
 					</div>
