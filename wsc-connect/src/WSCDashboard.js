@@ -5,6 +5,7 @@ import WSCDashboardOverview from './WSCDashboardOverview';
 import WSCDashboardMessages from './WSCDashboardMessages';
 import WSCDashboardMessageAdd from './WSCDashboardMessageAdd';
 import WSCDashboardUsers from './WSCDashboardUsers';
+import WSCDashboardStatistics from './WSCDashboardStatistics';
 import { FormattedMessage }  from 'react-intl';
 
 class WSCDashboard extends Component {
@@ -87,7 +88,7 @@ class WSCDashboard extends Component {
 							<NavLink className="nav-link" to={`${this.props.match.url}/users`}><FormattedMessage id="wsc.dashboard.users" /></NavLink>
 						</li>
 						<li className="nav-item">
-							<NavLink className="nav-link disabled" to="#"><FormattedMessage id="wsc.dashboard.statistics" /></NavLink>
+							<NavLink className="nav-link" to={`${this.props.match.url}/statistics`}><FormattedMessage id="wsc.dashboard.statistics" /></NavLink>
 						</li>
 					</ul>
 				</nav>
@@ -96,6 +97,7 @@ class WSCDashboard extends Component {
 				<Route path={`${this.props.match.url}/messages`} exact component={props => <WSCDashboardMessages app={this.state.app} {...props} />} />
 				<Route path={`${this.props.match.url}/messages/add`} component={props => <WSCDashboardMessageAdd  updateApp={() => this.updateApp()} app={this.state.app} {...props} />} />
 				<Route path={`${this.props.match.url}/users`} component={props => <WSCDashboardUsers app={this.state.app} {...props} />} />
+				<Route path={`${this.props.match.url}/statistics`} component={props => <WSCDashboardStatistics app={this.state.app} {...props} />} />
 			</div>
 		);
 	}

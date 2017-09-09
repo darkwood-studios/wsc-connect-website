@@ -76,16 +76,22 @@ class WSCLogin extends Component {
 	}
 
 	render() {
+		var params = new URLSearchParams(this.props.location.search);
+		var email = (params.get('email') !== null) ? decodeURIComponent(params.get('email')) : '';
+		var appSecret = (params.get('appSecret') !== null) ? decodeURIComponent(params.get('appSecret')) : '';
+
 		let formInputs = [];
 		let inputs = [
 			{
 				id: 'email',
+				value: email,
 				label: 'wsc.login.email',
 				inputType: 'email',
 				placeholder: 'wsc.login.email.placeholder'
 			},
 			{
 				id: 'appSecret',
+				value: appSecret,
 				label: 'wsc.login.app_secret',
 				inputType: 'password',
 				description: 'wsc.login.app_secret.description',

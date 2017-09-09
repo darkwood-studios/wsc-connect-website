@@ -13,6 +13,7 @@ class WSCFooter extends Component {
 					<a className="btn" href="https://pluginstore.woltlab.com/file/2666-wsc-connect-wsc-version/"><FormattedMessage id="wsc.footer.plugin.wsc" /></a>
 					<a className="btn" href="https://pluginstore.woltlab.com/file/2667-wsc-connect-wcf-2-1-version/"><FormattedMessage id="wsc.footer.plugin.wcf" /></a>
 					<NavLink className="btn" to="/about"><FormattedMessage id="wsc.footer.about" /></NavLink>
+					<NavLink className="btn" to="/privacy"><FormattedMessage id="wsc.footer.privacy" /></NavLink>
 				</div>
 			</footer>
 		);

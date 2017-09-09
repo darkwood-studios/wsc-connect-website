@@ -17,8 +17,8 @@ class WSCRegister extends Component {
 			apiUrl: '',
 			logo: '',
 			email: '',
-			appID: 'appID',
-			appSecret: 'appSecret',
+			appID: '',
+			appSecret: '',
 			formInputs: [
 				{
 					id: 'name',
@@ -81,9 +81,15 @@ class WSCRegister extends Component {
 		};
 	}
 
-	showForm() {
+	showPrivacy() {
 		this.setState({
 			step: 2
+		});
+	}
+
+	showForm(e) {
+		this.setState({
+			step: 3
 		});
 	}
 
@@ -232,7 +238,7 @@ class WSCRegister extends Component {
 			this.setState({
 				appID: json.appID,
 				appSecret: json.appSecret,
-				step: 3
+				step: 4
 			});
 		})
 		.catch((error) => {
@@ -293,7 +299,7 @@ class WSCRegister extends Component {
 			button.disabled = false;
 
 			this.setState({
-				step: 4
+				step: 5
 			});
 		})
 		.catch((error) => {
@@ -322,26 +328,45 @@ class WSCRegister extends Component {
 					</Alert>
 
 					<div className="text-center">
-						<Button color="primary" onClick={this.showForm.bind(this)}><FormattedMessage id="wsc.register.step1.done" /></Button>
+						<Button color="primary" onClick={this.showPrivacy.bind(this)}><FormattedMessage id="wsc.register.step1.done" /></Button>
 					</div>
 				</div>
 			);
 		} else if (step === 2) {
+			return(
+				<div>
+					<h2><FormattedMessage id="wsc.register.step2.title" /></h2>
+					<Alert color="info">
+						<FormattedHTMLMessage id="wsc.register.step2" />
+					</Alert>
+
+					<Form method="post" onSubmit={this.showForm.bind(this)}>
+						<div>
+							<input type="checkbox" required id="privacy" name="privacy" /> <label style={{display: 'inline'}} htmlFor="privacy"><FormattedMessage id="wsc.register.step2.privacy" /></label>
+						</div>
+
+						<div className="text-center">
+							<Button color="primary" id="submit"><FormattedMessage id="wsc.register.step2.validate" /></Button>
+						</div>
+					</Form>
+				</div>
+			);
+		} else if (step === 3) {
 			this.state.formInputs.forEach((input) => {
 				formInputs.push(<WSCInput input={input} validateErrors={this.state.validateErrors[input.id]} key={input.id} />);
 			});
 
 			return(
 				<div>
-					<h2><FormattedMessage id="wsc.register.step2.title" /></h2>
+					<h2><FormattedMessage id="wsc.register.step3.title" /></h2>
 					<Form method="post" onSubmit={this.validate.bind(this)}>
 						{formInputs}
 
-						<Button color="primary" id="submit"><FormattedMessage id="wsc.register.step2.validate" /></Button>
+						<Button color="primary" id="submit"><FormattedMessage id="wsc.register.step3.validate" /></Button>
 					</Form>
 				</div>
 			);
-		} else if (step === 3) {
+		} else if (step === 4) {
 			let inputs = [
 				{
 					id: 'appID',
@@ -364,24 +389,27 @@ class WSCRegister extends Component {
 
 			return(
 				<div>
-					<h2><FormattedMessage id="wsc.register.step3.title" /></h2>
-					<Alert color="warning">
-						<FormattedHTMLMessage id="wsc.register.step3" />
-					</Alert>
-
-					{formInputs}
-					<Button color="primary" onClick={this.validateAppData.bind(this)}><FormattedMessage id="wsc.register.step3.validate" /></Button>
-				</div>
-			);
-		} else if (step === 4) {
-			return (
-				<div>
 					<h2><FormattedMessage id="wsc.register.step4.title" /></h2>
-					<Alert color="success">
+					<Alert color="warning">
 						<FormattedHTMLMessage id="wsc.register.step4" />
 					</Alert>
 
-					<Link to="/apps" className="btn btn-primary"><FormattedMessage id="wsc.register.step4.done" /></Link>
+					{formInputs}
+					<Button color="primary" onClick={this.validateAppData.bind(this)}><FormattedMessage id="wsc.register.step4.validate" /></Button>
+				</div>
+			);
+		} else if (step === 5) {
+			var link = `/login?email=${encodeURIComponent(this.state.email)}&appSecret=${encodeURIComponent(this.state.appSecret)}`;
+
+			return (
+				<div>
+					<h2><FormattedMessage id="wsc.register.step5.title" /></h2>
+					<Alert color="success">
+						<FormattedHTMLMessage id="wsc.register.step5" />
+					</Alert>
+
+					<Link to={link} className="btn btn-primary"><FormattedMessage id="wsc.register.step5.login" /></Link>{' '}
+					<Link to="/apps" className="btn btn-secondary"><FormattedMessage id="wsc.register.step5.done" /></Link>
 				</div>
 			);
 		}
