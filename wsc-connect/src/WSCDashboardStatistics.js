@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Table, Alert } from 'reactstrap';
 import FontAwesome from 'react-fontawesome';
 import { FormattedMessage, FormattedDate }  from 'react-intl';
-import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 
 class WSCDashboardStatistics extends Component {
 	constructor(props) {
@@ -171,35 +170,6 @@ class WSCDayStatistic extends WSCMonthStatistic {
 				</tr>
 			);
 		} else {
-			/*var hours = [];
-			console.log(this.props.hours);
-			for (var key in this.props.hours) {
-				if (!this.props.hours.hasOwnProperty(key)) {
-					continue;
-				}
-
-				hours.push({
-					'hour': key,
-					'value': this.props.hours[key]
-				});
-			}
-
-			return (
-				<tr className="small">
-					<td colSpan="2">
-						<ResponsiveContainer width='100%' aspect={4.0/1.5}>
-							<BarChart data={hours}>
-								<XAxis name="Stunde" label="Stunde" dataKey="hour"/>
-								<YAxis label="API-Anfragen" />
-								<CartesianGrid />
-								<Tooltip/>
-								<Legend />
-								<Bar dataKey="value" name="API-Anfragen" fill="#3a6d9c" />
-							</BarChart>
-						</ResponsiveContainer>
-					</td>
-				</tr>
-			);*/
 		}
 	}
 }
