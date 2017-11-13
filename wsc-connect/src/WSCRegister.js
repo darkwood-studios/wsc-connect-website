@@ -81,15 +81,9 @@ class WSCRegister extends Component {
 		};
 	}
 
-	showPrivacy() {
-		this.setState({
-			step: 2
-		});
-	}
-
 	showForm(e) {
 		this.setState({
-			step: 3
+			step: 2
 		});
 	}
 
@@ -102,6 +96,7 @@ class WSCRegister extends Component {
 		let logo = e.currentTarget.logo.value;
 		let email = e.currentTarget.email.value;
 		let button = e.currentTarget.submit;
+		let privacy = e.currentTarget.privacy;
 		let error = false;
 		let validateErrors = {...this.state.validateErrors};
 
@@ -130,18 +125,14 @@ class WSCRegister extends Component {
 		}
 
 		let img = new Image();
-		img.onload = function() {
-			if (img.width !== img.height || img.width < 200 || img.width > 500) {
-				error = true;
-				validateErrors.logo.error = true;
-				validateErrors.logo.message = 'wsc.register.form.logo.error.dimension';		
-			} else {
-				validateErrors.logo.error = false;
-				validateErrors.logo.message = '';
-			}
+		img.onerror = function() {
+			validateErrors.logo.error = true;
+			validateErrors.logo.message = 'wsc.register.form.logo.error.load';
 
 			this.setState({validateErrors});
+		}.bind(this);
 
+		img.onload = function() {
 			// still check for empty values. The `required` attribute is not working in safari
 			if (name.trim().length === 0 || url.trim().length === 0 || apiUrl.trim().length === 0 || logo.trim().length === 0 || email.trim().length === 0) {
 				error = true;
@@ -238,7 +229,7 @@ class WSCRegister extends Component {
 			this.setState({
 				appID: json.appID,
 				appSecret: json.appSecret,
-				step: 4
+				step: 3
 			});
 		})
 		.catch((error) => {
@@ -299,7 +290,7 @@ class WSCRegister extends Component {
 			button.disabled = false;
 
 			this.setState({
-				step: 5
+				step: 4
 			});
 		})
 		.catch((error) => {
@@ -328,45 +319,26 @@ class WSCRegister extends Component {
 					</Alert>
 
 					<div className="text-center">
-						<Button color="primary" onClick={this.showPrivacy.bind(this)}><FormattedMessage id="wsc.register.step1.done" /></Button>
+						<Button color="primary" onClick={this.showForm.bind(this)}><FormattedMessage id="wsc.register.step1.done" /></Button>
 					</div>
 				</div>
 			);
 		} else if (step === 2) {
-			return(
-				<div>
-					<h2><FormattedMessage id="wsc.register.step2.title" /></h2>
-					<Alert color="info">
-						<FormattedHTMLMessage id="wsc.register.step2" />
-					</Alert>
-
-					<Form method="post" onSubmit={this.showForm.bind(this)}>
-						<div>
-							<input type="checkbox" required id="privacy" name="privacy" /> <label style={{display: 'inline'}} htmlFor="privacy"><FormattedMessage id="wsc.register.step2.privacy" /></label>
-						</div>
-
-						<div className="text-center">
-							<Button color="primary" id="submit"><FormattedMessage id="wsc.register.step2.validate" /></Button>
-						</div>
-					</Form>
-				</div>
-			);
-		} else if (step === 3) {
 			this.state.formInputs.forEach((input) => {
 				formInputs.push(<WSCInput input={input} validateErrors={this.state.validateErrors[input.id]} key={input.id} />);
 			});
 
 			return(
 				<div>
-					<h2><FormattedMessage id="wsc.register.step3.title" /></h2>
+					<h2><FormattedMessage id="wsc.register.step2.title" /></h2>
 					<Form method="post" onSubmit={this.validate.bind(this)}>
 						{formInputs}
-
-						<Button color="primary" id="submit"><FormattedMessage id="wsc.register.step3.validate" /></Button>
+						<p><input type="checkbox" required id="privacy" name="privacy" /> <label style={{display: 'inline'}} htmlFor="privacy"><FormattedHTMLMessage id="wsc.register.step2.privacy" /></label></p>
+						<Button color="primary" id="submit"><FormattedMessage id="wsc.register.step2.validate" /></Button>
 					</Form>
 				</div>
 			);
-		} else if (step === 4) {
+		} else if (step === 3) {
 			let inputs = [
 				{
 					id: 'appID',
@@ -389,27 +361,27 @@ class WSCRegister extends Component {
 
 			return(
 				<div>
-					<h2><FormattedMessage id="wsc.register.step4.title" /></h2>
+					<h2><FormattedMessage id="wsc.register.step3.title" /></h2>
 					<Alert color="warning">
-						<FormattedHTMLMessage id="wsc.register.step4" />
+						<FormattedHTMLMessage id="wsc.register.step3" />
 					</Alert>
 
 					{formInputs}
-					<Button color="primary" onClick={this.validateAppData.bind(this)}><FormattedMessage id="wsc.register.step4.validate" /></Button>
+					<Button color="primary" onClick={this.validateAppData.bind(this)}><FormattedMessage id="wsc.register.step3.validate" /></Button>
 				</div>
 			);
-		} else if (step === 5) {
+		} else if (step === 4) {
 			var link = `/login?email=${encodeURIComponent(this.state.email)}&appSecret=${encodeURIComponent(this.state.appSecret)}`;
 
 			return (
 				<div>
-					<h2><FormattedMessage id="wsc.register.step5.title" /></h2>
+					<h2><FormattedMessage id="wsc.register.step4.title" /></h2>
 					<Alert color="success">
-						<FormattedHTMLMessage id="wsc.register.step5" />
+						<FormattedHTMLMessage id="wsc.register.step4" />
 					</Alert>
 
-					<Link to={link} className="btn btn-primary"><FormattedMessage id="wsc.register.step5.login" /></Link>{' '}
-					<Link to="/apps" className="btn btn-secondary"><FormattedMessage id="wsc.register.step5.done" /></Link>
+					<Link to={link} className="btn btn-primary"><FormattedMessage id="wsc.register.step4.login" /></Link>{' '}
+					<Link to="/apps" className="btn btn-secondary"><FormattedMessage id="wsc.register.step4.done" /></Link>
 				</div>
 			);
 		}

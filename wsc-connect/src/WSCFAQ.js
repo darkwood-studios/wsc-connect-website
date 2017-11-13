@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Collapse, Card, CardHeader, CardBlock} from 'reactstrap';
+import { Collapse, Card, CardHeader, CardBody} from 'reactstrap';
 import { FormattedMessage }  from 'react-intl';
 
 class WSCFAQ extends Component {
@@ -67,9 +67,9 @@ class WSCFAQItem extends Component {
 				<Card className="mt-2">
 					<CardHeader role="button" onClick={this.toggle}><FormattedMessage id={this.props.faq.title} /></CardHeader>
 					<Collapse isOpen={this.state.collapse}>
-						<CardBlock>
+						<CardBody>
 							<FormattedMessage id={this.props.faq.text} />
-						</CardBlock>
+						</CardBody>
 					</Collapse>
 				</Card>
 		);

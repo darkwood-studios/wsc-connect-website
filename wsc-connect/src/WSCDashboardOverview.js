@@ -36,6 +36,7 @@ class WSCDashboardOverview extends Component {
 		let name = e.currentTarget.name.value;
 		let url = e.currentTarget.url.value;
 		let logo = e.currentTarget.logo.value;
+		let apiUrl = e.currentTarget.apiUrl.value;
 		let button = e.currentTarget.submit;
 		let visible = e.currentTarget.visible.checked;
 		let error = false;
@@ -58,19 +59,8 @@ class WSCDashboardOverview extends Component {
 
 		let img = new Image();
 		img.onload = function() {
-			if (img.width !== img.height || img.width < 200 || img.width > 500) {
-				error = true;
-				validateErrors.logo.error = true;
-				validateErrors.logo.message = 'wsc.register.form.logo.error.dimension';		
-			} else {
-				validateErrors.logo.error = false;
-				validateErrors.logo.message = '';
-			}
-
-			this.setState({validateErrors});
-
 			// still check for empty values. The `required` attribute is not working in safari
-			if (name.trim().length === 0 || url.trim().length === 0 || logo.trim().length === 0) {
+			if (name.trim().length === 0 || url.trim().length === 0 || apiUrl.trim().length === 0 || logo.trim().length === 0) {
 				error = true;
 			}
 
@@ -81,6 +71,7 @@ class WSCDashboardOverview extends Component {
 			let data = {
 				name,
 				url,
+				apiUrl,
 				logo,
 				visible
 			};
@@ -243,20 +234,19 @@ class WSCDashboardOverview extends Component {
 			{
 				id: 'url',
 				label: 'wsc.register.form.url.label',
-				inputType: 'text',
+				inputType: 'url',
 				value: this.state.app.url
 			},
 			{
 				id: 'apiUrl',
 				label: 'wsc.register.form.apiUrl.label',
-				readOnly: true,
-				inputType: 'text',
+				inputType: 'url',
 				value: this.state.app.apiUrl
 			},
 			{
 				id: 'logo',
 				label: 'wsc.register.form.logo.label',
-				inputType: 'text',
+				inputType: 'url',
 				value: this.state.app.logo
 			}
 		];
@@ -264,7 +254,6 @@ class WSCDashboardOverview extends Component {
 		inputs.forEach((input) => {
 			formInputs.push(<WSCInput input={input} readonly={input.readOnly} validateErrors={this.state.validateErrors[input.id]} key={input.id} />);
 		});
-
 
 		return (
 			<main className="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
@@ -295,7 +284,7 @@ class WSCDashboardOverview extends Component {
 				   	<form onSubmit={this.updateApp.bind(this)}>
 
 						{formInputs}
-						<div>
+						<div className="mb-3">
 						<input type="checkbox" id="visible" name="visible" defaultChecked={!this.state.app.hasOwnProperty('visible') || this.state.app.visible === true} /> <label style={{display: 'inline'}} htmlFor="visible"><FormattedMessage id="wsc.dashboard.form.visible" /></label>
 						</div>
 

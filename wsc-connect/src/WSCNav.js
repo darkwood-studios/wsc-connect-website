@@ -53,9 +53,9 @@ class WSCNav extends Component {
 	render() {
 		return (
 			<div>
-				<Navbar color="faded" light toggleable fixed="top">
-					<NavbarToggler right onClick={this.toggle} />
-					<NavLink className="navbar-brand" to="/"><FormattedMessage id="wsc.nav.wscConnect" /> <Badge color="info"><FormattedMessage id="wsc.nav.beta" /></Badge></NavLink>
+				<Navbar color="faded" light expand fixed="top">
+					<NavbarToggler onClick={this.toggle} />
+					<NavLink className="navbar-brand" to="/"><FormattedMessage id="wsc.nav.wscConnect" /></NavLink>
 					<Collapse isOpen={this.state.isOpen} navbar>
 						<Nav pills className="mr-auto" navbar>
 							<NavItem >
