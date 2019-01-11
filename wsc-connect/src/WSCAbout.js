@@ -7,11 +7,12 @@ class WSCAbout extends Component {
 			<div>
 				<h2><FormattedMessage id="wsc.about.title" /></h2>
 				Christopher Walz<br />
-				Vesoulerstraße 5<br />
-				70839 Gerlingen<br />
+				Neuköllner Straße 2<br />
+				71229 Leonberg<br />
 				<FormattedMessage id="wsc.about.germany" /><br /><br />
 				<a href="mailto:hello@wsc-connect.com">hello@wsc-connect.com</a><br /><br />
 				<FormattedHTMLMessage id="wsc.about.associated" />
+				<FormattedHTMLMessage id="wsc.about.references" />
 			</div>
 		);
 	}

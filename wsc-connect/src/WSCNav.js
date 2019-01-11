@@ -53,7 +53,7 @@ class WSCNav extends Component {
 	render() {
 		return (
 			<div>
-				<Navbar color="faded" light expand fixed="top">
+				<Navbar color="faded" light fixed="top" className="navbar-expand-lg">
 					<NavbarToggler onClick={this.toggle} />
 					<NavLink className="navbar-brand" to="/"><FormattedMessage id="wsc.nav.wscConnect" /></NavLink>
 					<Collapse isOpen={this.state.isOpen} navbar>
@@ -69,6 +69,12 @@ class WSCNav extends Component {
 									<NavLink className="nav-link" activeClassName="active" isActive={this.dashboardIsActive} to="/dashboard/overview">Dashboard ({this.state.loginAppName})</NavLink>
 								</NavItem>
 							}
+							<NavItem>
+								<NavLink className="nav-link" to="/support"><Badge color="danger"><FormattedMessage id="wsc.nav.support" /></Badge></NavLink>
+							</NavItem>
+							<NavItem>
+								<a className="nav-link" href="https://www.paypal.me/chriswalz"><Badge color="info"><FormattedMessage id="wsc.nav.support.paypal" /></Badge></a>
+							</NavItem>
 						</Nav>
 
 						<Nav navbar>

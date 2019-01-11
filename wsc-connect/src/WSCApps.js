@@ -70,10 +70,12 @@ class WSCApps extends Component {
 
 class AppRow extends React.Component {
 	render() {
-		var logo = `https://images.weserv.nl/?url=` + this.props.app.logo.replace(/^https?:\/\//,'');
+
+		let logoUrl = this.props.app.logo.replace(/^http:\/\//i, 'https://');
+
 		return (
 			<tr>
-				<td className="text-left"><img alt="" className="mg-fluid rounded" src={logo} /> <span>{this.props.app.name}</span></td>
+				<td className="text-left"><img alt={this.props.app.name} className="mg-fluid rounded" src={logoUrl} /> <span>{this.props.app.name}</span></td>
 				<td className="text-left"><a href={this.props.app.url} target="_blank">{this.props.app.url}</a></td>
 			</tr>
 		);

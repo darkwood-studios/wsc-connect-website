@@ -30,7 +30,6 @@ class WSCDashboardUsers extends Component {
 					<thead>
 						<tr>
 							<th><FormattedMessage id="wsc.dashboard.users.id" /></th>
-							<th><FormattedMessage id="wsc.dashboard.users.name" /></th>
 							<th><FormattedMessage id="wsc.dashboard.users.date" /></th>
 						</tr>
 					</thead>
@@ -53,7 +52,6 @@ class WSCUser extends Component {
 		return (
 			<tr>
 				<td className="text-left">{this.props.user.userID}</td>
-				<td className="text-left">{this.props.user.username}</td>
 				<td className="text-left"><FormattedDate value={new Date(this.props.user.createdAt)} />, <FormattedTime value={new Date(this.props.user.createdAt)} /></td>
 			</tr>
 		);
