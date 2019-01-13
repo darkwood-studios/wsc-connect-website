@@ -162,7 +162,10 @@ class WSCDashboardOverview extends Component {
 	}
 
 	revalidate(e) {
-		let button = e.currentTarget;
+		e.preventDefault();
+		let button = e.currentTarget.submit;
+		let apiUrl = e.currentTarget.apiUrl.value;
+
 		button.disabled = true;
 
 		fetch(config.apiUrl + 'validate', {
@@ -172,7 +175,7 @@ class WSCDashboardOverview extends Component {
 			},
 			method: "POST",
 			body: JSON.stringify({
-				'apiUrl': this.state.app.apiUrl,
+				'apiUrl': apiUrl,
 				'appID': this.state.app._id,
 				'appSecret': this.state.app.appSecret,
 				'type': 'apiDataValidation'
@@ -270,19 +273,18 @@ class WSCDashboardOverview extends Component {
 				}
 
 				{this.state.app.enabled === false && !this.state.updateSucess &&
-					<div>
+					<form onSubmit={this.revalidate.bind(this)}>
 						<Alert color="danger">
 							<FormattedHTMLMessage id="wsc.dashboard.overview.disabled" values={{apiUrl: this.state.app.apiUrl}} />
 						</Alert>
 
 						{formInputs}
 
-						<Button color="warning" onClick={this.revalidate.bind(this)} id="submit"><FormattedMessage id="wsc.dashboard.overview.revalidate" /></Button>
-					</div>
+						<Button color="warning" id="submit"><FormattedMessage id="wsc.dashboard.overview.revalidate" /></Button>
+					</form>
 				}
 				{this.state.app.enabled === true && !this.state.updateSucess &&
 				   	<form onSubmit={this.updateApp.bind(this)}>
-
 						{formInputs}
 						<div className="mb-3">
 						<input type="checkbox" id="visible" name="visible" defaultChecked={!this.state.app.hasOwnProperty('visible') || this.state.app.visible === true} /> <label style={{display: 'inline'}} htmlFor="visible"><FormattedMessage id="wsc.dashboard.form.visible" /></label>

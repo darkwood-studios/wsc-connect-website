@@ -98,7 +98,7 @@
 	"wsc.dashboard.statistics.empty": "No API-Requests found",
 	"wsc.dashboard.overview.delete.error": "An error occured while deleting your app. Try again.",
 	"wsc.dashboard.overview.enabled": "<strong>Status:</strong> Your app is enabled.",
-	"wsc.dashboard.overview.disabled": "<strong>Status:</strong> Your app is <strong>disabled</strong>. Please check your App-ID and App-Secret option in your ACP and make sure your API-URL (<a href={apiUrl} target=\"_blank\">{apiUrl}</a>) is accessible.",
+	"wsc.dashboard.overview.disabled": "<strong>Status:</strong> Your app is <strong>disabled</strong>. Please check your App-ID and App-Secret option in your ACP and make sure your API-URL (<a href={apiUrl} target=\"_blank\">{apiUrl}</a>) is accessible. If your API-URL changed, please update your API-URL now.",
 	"wsc.dashboard.overview.update": "Update App",
 	"wsc.dashboard.overview.delete": "Delete App",
 	"wsc.dashboard.overview.delete.modal.title": "Delete App?",

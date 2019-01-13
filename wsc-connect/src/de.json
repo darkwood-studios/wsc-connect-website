@@ -98,7 +98,7 @@
 	"wsc.dashboard.statistics.empty": "Es wurden noch keine API-Anfragen gefunden.",
 	"wsc.dashboard.overview.delete.error": "Wir konnten deine App nicht löschen. Versuche es erneut.",
 	"wsc.dashboard.overview.enabled": "<strong>Status:</strong> Deine App ist aktiv.",
-	"wsc.dashboard.overview.disabled": "<strong>Status:</strong> Deine App ist <strong>nicht</strong> aktiv. Bitte kontrolliere deine ACP-Optionen und vergewissere dich, dass deine API-URL (<a href={apiUrl} target=\"_blank\">{apiUrl}</a>) erreichbar ist.",
+	"wsc.dashboard.overview.disabled": "<strong>Status:</strong> Deine App ist <strong>nicht</strong> aktiv. Bitte kontrolliere deine ACP-Optionen und vergewissere dich, dass deine API-URL (<a href={apiUrl} target=\"_blank\">{apiUrl}</a>) erreichbar ist. Wenn sich deine API-URL durch einen Server-Umzug geändert hatte, passe diese unten entsprechend an.",
 	"wsc.dashboard.overview.update": "App updaten",
 	"wsc.dashboard.overview.delete": "App löschen",
 	"wsc.dashboard.overview.delete.modal.title": "App wirklich löschen?",

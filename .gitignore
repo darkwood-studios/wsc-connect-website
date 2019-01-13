@@ -1,3 +1,6 @@
 wsc-connect/package-lock.json
 .firebaserc
 public/
+node_modules/
+.idea/
+.cache/
