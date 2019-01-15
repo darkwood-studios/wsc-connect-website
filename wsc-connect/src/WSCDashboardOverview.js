@@ -39,6 +39,7 @@ class WSCDashboardOverview extends Component {
 		let apiUrl = e.currentTarget.apiUrl.value;
 		let button = e.currentTarget.submit;
 		let visible = e.currentTarget.visible.checked;
+		let acceptMails = e.currentTarget.acceptMails.checked;
 		let error = false;
 		let validateErrors = {...this.state.validateErrors};
 
@@ -73,7 +74,8 @@ class WSCDashboardOverview extends Component {
 				url,
 				apiUrl,
 				logo,
-				visible
+				visible,
+				acceptMails
 			};
 
 			button.disabled = true;
@@ -287,7 +289,10 @@ class WSCDashboardOverview extends Component {
 				   	<form onSubmit={this.updateApp.bind(this)}>
 						{formInputs}
 						<div className="mb-3">
-						<input type="checkbox" id="visible" name="visible" defaultChecked={!this.state.app.hasOwnProperty('visible') || this.state.app.visible === true} /> <label style={{display: 'inline'}} htmlFor="visible"><FormattedMessage id="wsc.dashboard.form.visible" /></label>
+							<input type="checkbox" id="visible" name="visible" defaultChecked={!this.state.app.hasOwnProperty('visible') || this.state.app.visible === true} /> <label style={{display: 'inline'}} htmlFor="visible"><FormattedMessage id="wsc.dashboard.form.visible" /></label>
+						</div>
+						<div className="mb-3">
+							<input type="checkbox" id="acceptMails" name="acceptMails" defaultChecked={this.state.app.acceptMails === true} /> <label style={{display: 'inline'}} htmlFor="acceptMails"><FormattedMessage id="wsc.dashboard.form.acceptMails" /></label>
 						</div>
 
 						<Button color="primary" id="submit"><FormattedMessage id="wsc.dashboard.overview.update" /></Button>{' '}

@@ -126,6 +126,7 @@
 	"wsc.dashboard.users.name": "Name",
 	"wsc.dashboard.users.date": "Registrierungsdatum",
 	"wsc.dashboard.form.visible": "Öffentlich: Deine App ist öffentlich für jeden WSC-Connect Nutzer sichtbar. Ist diese Option deaktiviert, dann kann deine App nur durch Nutzen der Suchfunktion in der mobilen App gefunden werden.",
+	"wsc.dashboard.form.acceptMails": "Accountbezogene E-Mails an die hinterlegte E-Mail-Adresse akzeptiereren (wir versenden kein Spam).",
 	"wsc.apps.title": "Apps",
 	"wsc.apps.name": "Name",
 	"wsc.apps.url": "URL",
