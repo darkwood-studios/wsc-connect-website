@@ -282,7 +282,8 @@ class WSCDashboardOverview extends Component {
 
 						{formInputs}
 
-						<Button color="warning" id="submit"><FormattedMessage id="wsc.dashboard.overview.revalidate" /></Button>
+						<Button color="warning" id="submit"><FormattedMessage id="wsc.dashboard.overview.revalidate" /></Button>{' '}
+						<Button color="danger" onClick={this.toggleDeleteModal.bind(this)}><FormattedMessage id="wsc.dashboard.overview.delete" /></Button>
 					</form>
 				}
 				{this.state.app.enabled === true && !this.state.updateSucess &&

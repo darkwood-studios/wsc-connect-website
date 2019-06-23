@@ -125,6 +125,7 @@
 	"wsc.dashboard.users.id": "ID",
 	"wsc.dashboard.users.name": "Name",
 	"wsc.dashboard.users.date": "Registration date",
+	"wsc.dashboard.users.platforms": "Platforms",
 	"wsc.dashboard.form.visible": "Public: Your app is publicly visible. By unticking this option, your app can only be found by searching for its name in the mobile app.",
 	"wsc.dashboard.form.acceptMails": "Accept account related E-Mails (we do not send spam).",
 	"wsc.apps.title": "Apps",

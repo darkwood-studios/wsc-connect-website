@@ -89,7 +89,7 @@ class WSCRegister extends Component {
 
 	validate(e) {
 		e.preventDefault();
-
+		console.log("validate");
 		let name = e.currentTarget.name.value;
 		let url = e.currentTarget.url.value;
 		let apiUrl = e.currentTarget.apiUrl.value;
@@ -100,7 +100,7 @@ class WSCRegister extends Component {
 		let error = false;
 		let validateErrors = {...this.state.validateErrors};
 
-		if (!isHttpsUri(apiUrl)) {
+		if (false && !isHttpsUri(apiUrl)) {
 			error = true;
 			validateErrors.apiUrl.error = true;
 			validateErrors.apiUrl.message = 'wsc.register.form.apiUrl.error.https';		
@@ -165,6 +165,7 @@ class WSCRegister extends Component {
 				})
 			})
 			.then(function(response) {
+				console.log(response);
 				if (response.status === 200) {
 					return response.json();
 				}

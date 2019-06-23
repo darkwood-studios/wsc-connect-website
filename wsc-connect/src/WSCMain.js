@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import SplashImg1 from './splash1.png';
-import SplashImg2 from './splash2.png';
+
+import SplashImg1 from './splash1.jpg';
+import SplashImgIos1 from './splash1ios.jpg';
+import SplashImg2 from './splash2.jpg';
+import SplashImgIos2 from './splash2ios.jpg';
 import SplashImg3 from './splash3.png';
 import AppStoreImg from './app-store.svg';
 import PlayStoreImg from './play-store.svg';
@@ -13,6 +16,7 @@ class WSCMain extends Component {
 			<div>
 				<div className="main-container">
 					<div className="clearfix">
+						<img src={SplashImgIos1} className="img-thumbnail float-right img-fluid splash-image-right" alt="" />
 						<img src={SplashImg1} className="img-thumbnail float-right img-fluid splash-image-right" alt="" />
 
 						<h2><FormattedMessage id="wsc.main.title" /></h2>
@@ -36,6 +40,7 @@ class WSCMain extends Component {
 
 					<div className="pt-5 clearfix">
 						<img src={SplashImg2} className="img-thumbnail float-left img-fluid splash-image-left" alt="" />
+						<img src={SplashImgIos2} className="img-thumbnail float-left img-fluid splash-image-left" alt="" />
 
 						<h2><FormattedMessage id="wsc.main.title2" /></h2>
 						<div className="main-container-teaser"><FormattedHTMLMessage id="wsc.main.teaser2" /></div>
