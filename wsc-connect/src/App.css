@@ -132,10 +132,6 @@ padding-left: 5px;
 	width: 190px;
 }
 
-.app-store-badge {
-	opacity: 0.3;
-}
-
 table.statistics tbody tr:not(.small) {
 	cursor: pointer;
 }

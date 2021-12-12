@@ -29,7 +29,7 @@
 	"wsc.faq.title1": "Ist WSC-Connect kostenlos?",
 	"wsc.faq.text1": "Ja! Die WSC-Connect App ist kostenlos.",
 	"wsc.faq.title2": "Welche Android Version brauche ich und gibt es eine iOS App?",
-	"wsc.faq.text2": "Du benötigst mindestens Android 4.2 (Jelly Bean). Eine iOS App existiert derzeit noch nicht. Sobald diese verfügbar ist, wird sie auf wsc-connect.com zum Download bereitstehen.",
+	"wsc.faq.text2": "Du benötigst mindestens Android 4.2 (Jelly Bean). Eine iOS-App existiert auch und benötigt mindestens iOS 10.",
 	"wsc.faq.title3": "Speichert wsc-connect.com sensible Daten wie Passwörter?",
 	"wsc.faq.text3": "Nein, wir speichern keine Passwörter. Um zu sehen welche Daten wir speichern, besuche unsere Datenschutz-Seite.",
 	"wsc.faq.title4": "Welche Version des WCF/WSC wird benötigt?",
@@ -142,6 +142,8 @@
 	"wsc.download.title": "Downloads",
 	"wsc.download.android": "<strong>Android App:</strong> <a href=\"https://play.google.com/store/apps/details?id=wscconnect.android\">https://play.google.com/store/apps/details?id=wscconnect.android</a>",
 	"wsc.download.android.description": "Benötigt ein Smartphone mit Android 4.2 oder höher.",	
+	"wsc.download.ios": "<strong>iOS App:</strong> <a href=\"https://apps.apple.com/us/app/wsc-connect/id1462270360\">https://apps.apple.com/us/app/wsc-connect/id1462270360</a>",
+	"wsc.download.ios.description": "Benötigt ein Smartphone mit iOS 10 oder höher.",	
 	"wsc.download.wsc": "<strong>WSC/WSF-Plugin:</strong> <a href=\"https://pluginstore.woltlab.com/file/2666-wsc-connect-wsc-version/\">https://pluginstore.woltlab.com/file/2666-wsc-connect-wsc-version/</a>",
 	"wsc.download.wsc.description": "Benötigt die <a href=\"https://www.woltlab.com/woltlab-suite-download/\">WoltLab Suite</a> in Version 3.0.4 oder höher.",	
 	"wsc.download.wcf": "<strong>WCF/WBB-Plugin:</strong> <a href=\"https://pluginstore.woltlab.com/file/2667-wsc-connect-wcf-2-1-version/\">https://pluginstore.woltlab.com/file/2667-wsc-connect-wcf-2-1-version/</a>",
@@ -173,6 +175,8 @@
 	"wsc.dashboard.tabs.conversations.error": "Das Konversations-Plugin ist auf deiner Seite nicht installiert oder deine Plugin-Version für \"WSC-Connect\" ist veraltet. Bitte installiere dieses und versuche es erneut.",
 	"wsc.dashboard.tabs.error": "Es ist ein Fehler aufgetreten. Bitte aktualisiere die Seite und versuche es erneut",
 	"wsc.dashboard.tabs.submit": "App-Tabs ändern",
+	"wsc.dashboard.ios.available": "WSC-Connect für iOS steht jetzt zum Download bereit!",
 	"wsc.support.title": "Support",
+	"wsc.footer.ios": "iOS-App",
 	"wsc.support.text": "<p>Unterstützt uns mit einer Überweisung an unsere Bitcoin-Adresse: <a href=\"https://blockchain.info/address/19dNEK8XgxGkQ1jUEhbPLUaKbqBCHcqwbJ\">19dNEK8XgxGkQ1jUEhbPLUaKbqBCHcqwbJ</a></p><p>Unterstützt uns mit einer Überweisung an unsere Ethereum-Adresse: <a href=\"https://etherscan.io/address/0x971845F773d0f118adDCC51B5400bc1FbBA3c35F\">0x971845F773d0f118adDCC51B5400bc1FbBA3c35F</a></p>"
 }

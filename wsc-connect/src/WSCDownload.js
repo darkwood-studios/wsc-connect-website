@@ -12,6 +12,11 @@ class WSCDownload extends Component {
 					<div><Badge color="info"><FormattedMessage id="wsc.version" values={{version: "1.0.14"}} /></Badge></div>
 					<div><small className="text-muted"><FormattedMessage id="wsc.download.android.description" /></small></div>
 				</div>
+				<div>
+					<FormattedHTMLMessage id="wsc.download.ios" />
+					<div><Badge color="info"><FormattedMessage id="wsc.version" values={{version: "1.0.15"}} /></Badge></div>
+					<div><small className="text-muted"><FormattedMessage id="wsc.download.ios.description" /></small></div>
+				</div>
 				<div className="mt-3">
 					<FormattedHTMLMessage id="wsc.download.wsc" />
 					<div><Badge color="info"><FormattedMessage id="wsc.version" values={{version: "3.0.13"}} /></Badge></div>

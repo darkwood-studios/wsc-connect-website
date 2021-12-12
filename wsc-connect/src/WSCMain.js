@@ -9,6 +9,7 @@ import AppStoreImg from './app-store.svg';
 import PlayStoreImg from './play-store.svg';
 import { Link } from 'react-router-dom'
 import { FormattedMessage, FormattedHTMLMessage }  from 'react-intl';
+import { Alert } from 'reactstrap';
 
 class WSCMain extends Component {
 	render() {
@@ -16,6 +17,11 @@ class WSCMain extends Component {
 			<div>
 				<div className="main-container">
 					<div className="clearfix">
+
+						<Alert color="info">
+							<FormattedMessage id="wsc.dashboard.ios.available" />
+						</Alert>
+
 						<img src={SplashImgIos1} className="img-thumbnail float-right img-fluid splash-image-right" alt="" />
 						<img src={SplashImg1} className="img-thumbnail float-right img-fluid splash-image-right" alt="" />
 
@@ -34,7 +40,9 @@ class WSCMain extends Component {
 								<img alt='Get it on Google Play' className="app-badge play-store-badge" src={PlayStoreImg} />
 							</a>
 
-							<img alt='' className="app-badge app-store-badge" src={AppStoreImg} />
+							<a href='https://apps.apple.com/us/app/wsc-connect/id1462270360'>
+								<img alt='' className="app-badge app-store-badge" src={AppStoreImg} />
+							</a>
 						</div>
 					</div>
 

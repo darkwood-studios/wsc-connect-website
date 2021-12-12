@@ -9,6 +9,7 @@ class WSCFooter extends Component {
 		return (
 			<footer className={dashboard ? 'col-sm-9 offset-sm-3 col-md-10 offset-md-2 footer' : 'footer'}>
 				<div className="container">
+					<a className="btn" href="https://apps.apple.com/us/app/wsc-connect/id1462270360"><FormattedMessage id="wsc.footer.ios" /></a>
 					<a className="btn" href="https://play.google.com/store/apps/details?id=wscconnect.android&pcampaignid=wsc-connect.com"><FormattedMessage id="wsc.footer.android" /></a>
 					<a className="btn" href="https://pluginstore.woltlab.com/file/2666-wsc-connect-wsc-version/"><FormattedMessage id="wsc.footer.plugin.wsc" /></a>
 					<a className="btn" href="https://pluginstore.woltlab.com/file/2667-wsc-connect-wcf-2-1-version/"><FormattedMessage id="wsc.footer.plugin.wcf" /></a>
