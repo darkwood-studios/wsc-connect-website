@@ -6,9 +6,9 @@ class WSCAbout extends Component {
 		return (
 			<div>
 				<h2><FormattedMessage id="wsc.about.title" /></h2>
-				Christopher Walz<br />
-				Neuköllner Straße 2<br />
-				71229 Leonberg<br />
+				Daniel Hass<br />
+				Köpenicker Str. 36<br />
+				15754 Heidesee<br />
 				<FormattedMessage id="wsc.about.germany" /><br /><br />
 				<a href="mailto:hello@wsc-connect.com">hello@wsc-connect.com</a><br /><br />
 				<FormattedHTMLMessage id="wsc.about.associated" />

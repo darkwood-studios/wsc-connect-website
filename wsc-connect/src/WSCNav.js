@@ -73,7 +73,7 @@ class WSCNav extends Component {
 								<NavLink className="nav-link" to="/support"><Badge color="danger"><FormattedMessage id="wsc.nav.support" /></Badge></NavLink>
 							</NavItem>
 							<NavItem>
-								<a className="nav-link" href="https://www.paypal.me/chriswalz"><Badge color="info"><FormattedMessage id="wsc.nav.support.paypal" /></Badge></a>
+								<a className="nav-link" href="https://paypal.me/fitbitgym"><Badge color="info"><FormattedMessage id="wsc.nav.support.paypal" /></Badge></a>
 							</NavItem>
 						</Nav>
 
